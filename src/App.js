@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import BugForm from "./components/Bugform";
+import BugList from "./components/Buglist";
+import {getBugs, saveBugs} from "./utils/storage";
 
 function App() {
+  const [bugs, setBugs] = useState([]);
+
+  useEffect(() => {
+    setBugs(getBugs());
+  }, []);
+
+  useEffect(() => {
+    saveBugs(bugs);
+  }, [bugs]);
+
+  const addBug = (bug) => {
+    setBugs([...bugs, bug]);
+  };
+
+  const updateStatus = (id, status) => {
+    setBugs = bugs.map(b => b.id === id ? {...b, status}: b);
+  }; 
+  
+  const deleteBug = (id) => {
+    setBugs(bugs.filter(b => b.id !== id));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Bug Tracker</h1>
+      <BugForm onAddBug={addBug} />
+      <BugList
+       bugs={bugs} 
+       onUpdateStatus={updateStatus} 
+       onDeleteBug={deleteBug} 
+       />
     </div>
   );
-}
+
+};
+
 
 export default App;
