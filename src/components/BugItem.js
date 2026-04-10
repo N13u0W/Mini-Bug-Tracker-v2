@@ -1,6 +1,9 @@
-function BugItem({ bug, updateStatus }) {
+function BugItem({ bug, updateStatus, deleteBug }) {
+
+    console.log(deleteBug);
+
     return (
-        <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+        <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
             <h3>{bug.title}</h3>
             <p>{bug.description}</p>
             <p>Priority: {bug.priority}</p>

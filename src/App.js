@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import BugForm from "./components/Bugform";
-import BugList from "./components/Buglist";
+import BugForm from "./components/BugForm";
+import BugList from "./components/BugList";
 import {getBugs, saveBugs} from "./utils/storage";
 
 function App() {
@@ -15,11 +15,11 @@ function App() {
   }, [bugs]);
 
   const addBug = (bug) => {
-    setBugs([...bugs, bug]);
+    setBugs([...bugs, bug]);  
   };
 
   const updateStatus = (id, status) => {
-    setBugs = bugs.map(b => b.id === id ? {...b, status}: b);
+    setBugs(bugs.map(b => b.id === id ? { ...b, status } : b));
   }; 
   
   const deleteBug = (id) => {
@@ -29,11 +29,11 @@ function App() {
   return (
     <div>
       <h1>Bug Tracker</h1>
-      <BugForm onAddBug={addBug} />
+      <BugForm addBug={addBug} />
       <BugList
        bugs={bugs} 
-       onUpdateStatus={updateStatus} 
-       onDeleteBug={deleteBug} 
+       updateStatus={updateStatus} 
+       deleteBug={deleteBug} 
        />
     </div>
   );
