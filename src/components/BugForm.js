@@ -24,6 +24,7 @@ const handleSubmit = (e) => {
 };
 
 return (
+    <div className="card">
     <form onSubmit={handleSubmit}>
         <input 
             placeholder="Title"
@@ -44,8 +45,9 @@ return (
                 <option>Medium</option>
                 <option>High</option>
             </select>
-            <button type="submit">Add Bug</button>
+            <button className="btn-add">Add Bug</button>
             </form>
+            </div>
 
 );
 }

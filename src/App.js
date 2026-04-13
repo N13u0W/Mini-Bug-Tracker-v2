@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import BugForm from "./components/BugForm";
 import BugList from "./components/BugList";
 import {getBugs, saveBugs} from "./utils/storage";
+import './App.css';
 
 function App() {
   const [bugs, setBugs] = useState([]);
@@ -27,7 +28,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Bug Tracker</h1>
       <BugForm addBug={addBug} />
       <BugList
